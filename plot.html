@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>Square Polygon Map</title>
+  <style>
+  html, body, #map-canvas, .map-wrap {
+    height: 100%;
+    margin: 0px;
+    padding: 0px
+  }
+  </style>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+  <script src="jquery.js"></script>
+  <script src="jquery.csv.js"></script>
+  <script src="plot.js"></script>
+</head>
+<body>
+  <div class="left" style="float:left; width: 200px; height:100%;">
+    <div id="info-area" style="height:30px;padding:5px;">
+    </div>
+    <textarea style="width:100%; height: 80%;margin:5px 0 0 5px;" id="plot-data"></textarea>
+    <input type="submit" value="Plot" id="plot-button" style="width:100px;height: 30px;font-size: 20px;padding: 2px;border: 1px solid #CAC7C7;background-color: #FFF;border-radius: 5px;margin-left: 5px;">
+  </div>
+  <div class="map-wrap" style="margin-left:216px">
+    <div id="map-canvas"></div>
+  </div>
+</body>
+</html>
