@@ -19,7 +19,7 @@ $(document).ready ->
 
   google.maps.event.addDomListener window, "load", initialize
 
-  add_marker = (title, lat, long)->
+  add_marker = (title, lat, long, green)->
     myLatlng = new google.maps.LatLng(lat, long)
     marker = new google.maps.Marker(
       position: myLatlng
@@ -27,6 +27,7 @@ $(document).ready ->
       title: title
     )
 
+    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png') if green == true
 
     google.maps.event.addListener marker, "click", ->
       debugger
@@ -36,11 +37,14 @@ $(document).ready ->
   $("#plot-button").click ->
     csv = $("#plot-data")[0].value
     lines = csv.split("\n")
-    for line in lines
+    for line, i in lines
       split_content = line.split(",")
       lat = split_content[0]
       long = split_content[1]
       title = split_content[2]
-      add_marker(title, lat, long)
+      if i == lines.length - 1
+        add_marker(title, lat, long, true)
+      else
+        add_marker(title, lat, long)
 
     false

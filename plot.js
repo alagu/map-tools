@@ -21,7 +21,7 @@ $(document).ready(function() {
     return window.map = new google.maps.Map(mapDiv, mapOptions);
   };
   google.maps.event.addDomListener(window, "load", initialize);
-  add_marker = function(title, lat, long) {
+  add_marker = function(title, lat, long, green) {
     var marker, myLatlng;
     myLatlng = new google.maps.LatLng(lat, long);
     marker = new google.maps.Marker({
@@ -29,22 +29,29 @@ $(document).ready(function() {
       map: window.map,
       title: title
     });
+    if (green === true) {
+      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+    }
     return google.maps.event.addListener(marker, "click", function() {
       debugger;
       $("#info-area").html(marker.title);
     });
   };
   return $("#plot-button").click(function() {
-    var csv, lat, line, lines, long, split_content, title, _i, _len;
+    var csv, i, lat, line, lines, long, split_content, title, _i, _len;
     csv = $("#plot-data")[0].value;
     lines = csv.split("\n");
-    for (_i = 0, _len = lines.length; _i < _len; _i++) {
-      line = lines[_i];
+    for (i = _i = 0, _len = lines.length; _i < _len; i = ++_i) {
+      line = lines[i];
       split_content = line.split(",");
       lat = split_content[0];
       long = split_content[1];
       title = split_content[2];
-      add_marker(title, lat, long);
+      if (i === lines.length - 1) {
+        add_marker(title, lat, long, true);
+      } else {
+        add_marker(title, lat, long);
+      }
     }
     return false;
   });
