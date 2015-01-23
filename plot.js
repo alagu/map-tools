@@ -31,6 +31,8 @@ $(document).ready(function() {
     });
     if (green === true) {
       marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+    } else {
+      marker.setIcon('http://maps.gstatic.com/mapfiles/markers2/measle.png');
     }
     return google.maps.event.addListener(marker, "click", function() {
       debugger;

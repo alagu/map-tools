@@ -27,7 +27,10 @@ $(document).ready ->
       title: title
     )
 
-    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png') if green == true
+    if green == true
+      marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png')
+    else
+      marker.setIcon('http://maps.gstatic.com/mapfiles/markers2/measle.png')
 
     google.maps.event.addListener marker, "click", ->
       debugger
